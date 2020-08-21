@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Autocomplete :items="countries"
+      filterby="country"
+      @change="onChange"
+      title = "Choose country..."
+      @selected="countrySelected"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import countries from './assets/countries';
+import Autocomplete from './components/Autocomplete'
 export default {
   name: 'App',
+  mounted() {
+    this.countries = countries;
+  },
+  data() {
+    return {
+      countries: []
+    };
+  },
+  methods: {
+    countrySelected(country) {
+    }
+  },
   components: {
-    HelloWorld
+    Autocomplete
   }
 }
 </script>
-
 <style>
+body{
+  padding: 0;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width:100vw;
 }
 </style>
